@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack",
-    "relay": "relay-compiler"
+    "relay": "relay-compiler",
+    "schema": "get-graphql-schema http://localhost:4000/graphql > schema.graphql"
   },
   "keywords": [],
   "author": "",
@@ -15,13 +16,13 @@
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
     "@vitejs/plugin-react": "^4.3.4",
-    "graphql": "^16.9.0",
+    "graphql": "^16.11.0",
     "graphql-relay": "^0.10.2",
     "html-webpack-plugin": "^5.6.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-relay": "^18.2.0",
-    "relay-runtime": "^18.2.0",
+    "react-relay": "^20.1.1",
+    "relay-runtime": "^20.1.1",
     "ts-loader": "^9.5.1",
     "tsconfig-paths": "^4.2.0",
     "typescript": "^5.7.2",
@@ -34,12 +35,13 @@
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-react": "^7.26.3",
     "@babel/preset-typescript": "^7.26.0",
-    "@types/react-relay": "^18.2.0",
-    "@types/relay-runtime": "^18.2.1",
+    "@types/react-relay": "^18.2.1",
+    "@types/relay-runtime": "^19.0.3",
     "babel-loader": "^9.2.1",
-    "babel-plugin-relay": "^18.2.0",
+    "babel-plugin-relay": "^20.1.1",
     "css-loader": "^7.1.2",
-    "relay-compiler": "^18.2.0",
+    "get-graphql-schema": "^2.1.2",
+    "relay-compiler": "^20.1.1",
     "style-loader": "^4.0.0"
   }
 }

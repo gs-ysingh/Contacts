@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",  // Output compiled files to the "dist" folder
+    "rootDir": "./",      // The source files are in the root folder (contacts-server)
+    "resolveJsonModule": true
+  },
+  "include": [
+    "server/**/*.ts"  // Include all .ts files in the "server" folder
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

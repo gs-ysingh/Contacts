@@ -1,9 +1,133 @@
+"""The root query object."""
 type Query {
-  contacts: [Contact]
+  """Fetches an object given its ID."""
+  node(
+    """The ID of an object."""
+    id: ID!
+  ): Node
+
+  """A connection to a list of items."""
+  contacts(
+    """Returns the items in the list that come after the specified cursor."""
+    after: String
+
+    """Returns the first n items from the list."""
+    first: Int
+
+    """Returns the items in the list that come before the specified cursor."""
+    before: String
+
+    """Returns the last n items from the list."""
+    last: Int
+  ): ContactConnection
+
+  """Get a single contact by ID"""
+  contact(id: ID!): Contact
 }
 
-type Contact {
-  id: ID
-  name: String
+"""An object with an ID."""
+interface Node {
+  """The id of the object."""
+  id: ID!
+}
+
+"""A connection to a list of items."""
+type ContactConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [ContactEdge]
+}
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: String
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: String
+}
+
+"""An edge in a connection."""
+type ContactEdge {
+  """The item at the end of the edge."""
+  node: Contact
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+"""A contact in the system"""
+type Contact implements Node {
+  """The ID of an object."""
+  id: ID!
+  firstName: String
+  lastName: String
+  email: String
   phone: String
+  company: String
+  jobTitle: String
+  notes: String
+  avatar: String
+  createdAt: String
+  updatedAt: String
+}
+
+"""The root mutation object."""
+type Mutation {
+  createContact(input: CreateContactInput!): CreateContactPayload
+  updateContact(input: UpdateContactInput!): UpdateContactPayload
+  deleteContact(input: DeleteContactInput!): DeleteContactPayload
+}
+
+type CreateContactPayload {
+  contact: Contact
+  clientMutationId: String
+}
+
+input CreateContactInput {
+  firstName: String!
+  lastName: String
+  email: String!
+  phone: String
+  company: String
+  jobTitle: String
+  notes: String
+  avatar: String
+  clientMutationId: String
+}
+
+type UpdateContactPayload {
+  contact: Contact
+  clientMutationId: String
+}
+
+input UpdateContactInput {
+  id: ID!
+  firstName: String
+  lastName: String
+  email: String
+  phone: String
+  company: String
+  jobTitle: String
+  notes: String
+  avatar: String
+  clientMutationId: String
+}
+
+type DeleteContactPayload {
+  deletedContactId: ID
+  clientMutationId: String
+}
+
+input DeleteContactInput {
+  id: ID!
+  clientMutationId: String
 }

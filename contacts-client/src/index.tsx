@@ -1,15 +1,19 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client'; // Use the new API
+import ReactDOM from 'react-dom/client';
 import { RelayEnvironmentProvider } from 'react-relay';
 import App from './App';
 import relayEnvironment from './relay/Environment';
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const rootElement = document.getElementById('root') as HTMLElement;
+
+// Clear the root element to prevent conflicts with HMR
+rootElement.innerHTML = '';
+
+const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <RelayEnvironmentProvider environment={relayEnvironment}>
-        <App />
+      <App />
     </RelayEnvironmentProvider>
-    
   </React.StrictMode>
 );
